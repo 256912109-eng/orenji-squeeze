@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORENJI SQUEEZE | Fresher · Happier · Healthier</title>
+    <meta name="description" content="Jus jeruk segar premium 100% jeruk asli. Sekali coba, langsung segar! Temukan varian Jus Jeruk Original, Milk, Yakult, Madu, dan Chia Seed.">
+    <meta property="og:title" content="ORENJI SQUEEZE - Fresher · Happier · Healthier">
+    <meta property="og:description" content="Segarnya Bikin Mood Naik! Nikmati kesegaran jus jeruk murni ORENJI SQUEEZE.">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orenji: {
+                            primary: '#FF6B00',    /* Vibrant Orange */
+                            secondary: '#FFA800',  /* Golden Yellow */
+                            dark: '#D95200',       /* Deep Reddish Orange */
+                            accent: '#4CAF50',     /* Leaf Green */
+                            light: '#FFF8F0',      /* Soft Cream/Orange tint */
+                            card: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        display: ['Fredoka', 'Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased selection:bg-orenji-primary selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-orange-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-full orange-gradient flex items-center justify-center text-white font-bold shadow-md group-hover:scale-105 transition-transform">
+                        <i data-lucide="citrus" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-2xl tracking-wide text-orenji-dark block leading-none">ORENJI</span>
+                        <span class="font-display font-medium text-sm text-orenji-primary tracking-wider uppercase block">Squeeze</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-gray-700">
+                    <a href="#home" class="hover:text-orenji-primary transition-colors py-2">Home</a>
+                    <a href="#menu" class="hover:text-orenji-primary transition-colors py-2">Menu</a>
+                    <a href="#about" class="hover:text-orenji-primary transition-colors py-2">Tentang Kami</a>
+                    <a href="#gallery" class="hover:text-orenji-primary transition-colors py-2">Galeri</a>
+                    <a href="#testimonials" class="hover:text-orenji-primary transition-colors py-2">Testimoni</a>
+                    <a href="#how-to-order" class="hover:text-orenji-primary transition-colors py-2">Cara Pesan</a>
+                    <a href="#faq" class="hover:text-orenji-primary transition-colors py-2">FAQ</a>
+                    <a href="#contact" class="hover:text-orenji-primary transition-colors py-2">Kontak</a>
+                </nav>
+
+                <!-- Action Button Desktop -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="openOrderModal()" class="orange-gradient text-white font-bold px-5 py-2.5 rounded-full shadow-lg hover:shadow-orange-300 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 text-sm">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                        <span>Pesan Sekarang</span>
+                    </button>
+                    <!-- CMS Admin Mockup Button -->
+                    <button onclick="openCmsModal()" title="Pengaturan Konten (CMS)" class="p-2 text-gray-400 hover:text-orenji-primary transition-colors rounded-full hover:bg-orange-50">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button onclick="openCmsModal()" title="Pengaturan Konten" class="p-2 text-gray-500 hover:text-orenji-primary">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-700 hover:bg-orange-100 focus:outline-none" aria-label="Toggle Menu">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-orange-100 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Home</a>
+            <a href="#menu" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Menu Minuman</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Tentang Kami</a>
+            <a href="#gallery" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Galeri Foto</a>
+            <a href="#testimonials" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Testimoni</a>
+            <a href="#how-to-order" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Cara Pesan</a>
+            <a href="#faq" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">FAQ</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-base font-semibold text-gray-700 hover:bg-orange-50 hover:text-orenji-primary">Kontak</a>
+            <div class="pt-2">
+                <button onclick="openOrderModal()" class="w-full orange-gradient text-white font-bold py-3 rounded-xl shadow-md text-center flex items-center justify-center gap-2">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span>Pesan Sekarang (WhatsApp)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden pt-8 pb-16 md:py-20 lg:py-28 bg-gradient-to-b from-orange-50 via-amber-50/50 to-orange-100/30">
+        <!-- Floating decorative orange slices -->
+        <div class="absolute top-10 left-5 w-16 h-16 opacity-20 pointer-events-none animate-bounce" style="animation-duration: 6s;">
+            <svg viewBox="0 0 100 100" fill="#FF6B00"><circle cx="50" cy="50" r="45"/><path d="M50 5 L50 95 M5 50 L95 50 M18 18 L82 82 M18 82 L82 18" stroke="#FFF" stroke-width="4"/></svg>
+        </div>
+        <div class="absolute bottom-10 right-10 w-24 h-24 opacity-15 pointer-events-none animate-pulse">
+            <svg viewBox="0 0 100 100" fill="#FFA800"><circle cx="50" cy="50" r="45"/><path d="M50 5 L50 95 M5 50 L95 50" stroke="#FFF" stroke-width="6"/></svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                <!-- Hero Text Left -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 border border-orange-200 text-orenji-dark text-xs sm:text-sm font-bold mb-6 badge-pulse">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-orenji-primary"></i>
+                        <span>Fresher · Happier · Healthier</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-gray-900 leading-tight mb-4">
+                        Sekali Coba,<br>
+                        <span class="text-transparent bg-clip-text orange-gradient">Langsung Segar!</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
+                        Jus Jeruk Segar untuk Hari yang Lebih Baik! Nikmati racikan 100% jeruk asli pilihan, kaya Vitamin C, tanpa pengawet & tanpa pewarna sintetis. Segarnya bikin mood naik!
+                    </p>
+
+                    <!-- Key Selling Badges from Image -->
+                    <div class="grid grid-cols-3 gap-3 max-w-md mx-auto lg:mx-0 mb-8 text-center">
+                        <div class="p-3 bg-white/80 rounded-2xl shadow-sm border border-orange-100">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-orenji-primary mx-auto mb-1"></i>
+                            <p class="text-xs font-bold text-gray-800">100% Jeruk Asli</p>
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl shadow-sm border border-orange-100">
+                            <i data-lucide="zap" class="w-6 h-6 text-orenji-primary mx-auto mb-1"></i>
+                            <p class="text-xs font-bold text-gray-800">Tinggi Vitamin C</p>
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl shadow-sm border border-orange-100">
+                            <i data-lucide="smile" class="w-6 h-6 text-orenji-primary mx-auto mb-1"></i>
+                            <p class="text-xs font-bold text-gray-800">Mood Auto Naik</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#menu" class="w-full sm:w-auto orange-gradient text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all text-center flex items-center justify-center gap-3">
+                            <i data-lucide="cup-soda" class="w-5 h-5"></i>
+                            <span>LIHAT MENU SEKARANG</span>
+                        </a>
+                        <a href="#how-to-order" class="w-full sm:w-auto bg-white border-2 border-orenji-primary text-orenji-dark font-bold px-8 py-4 rounded-2xl hover:bg-orange-50 transition-all text-center flex items-center justify-center gap-2">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i>
+                            <span>CARA PESAN</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Product Visual Right -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md">
+                        <!-- Background Glow Effect -->
+                        <div class="absolute -inset-4 orange-gradient rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+
+                        <!-- Main Card Showcase -->
+                        <div class="relative bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border-4 border-white">
+                            <!-- Visual Badge -->
+                            <div class="absolute -top-4 -right-4 orange-gradient text-white text-xs font-extrabold px-4 py-2 rounded-full shadow-lg border-2 border-white rotate-6">
+                                Murni & Segar!
+                            </div>
+
+                            <!-- Showcase Product Image -->
+                            <div class="relative rounded-2xl overflow-hidden bg-orange-100 mb-4 aspect-[4/5] flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=800&q=80"
+                                     alt="Orenji Squeeze Juice"
+                                     class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                                     id="hero-img-preview">
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 text-white">
+                                    <p class="text-xs uppercase tracking-wider font-semibold text-amber-300">Best Seller</p>
+                                    <h3 class="text-lg font-bold font-display" id="hero-img-caption">Jus Jeruk Original & Varian Special</h3>
+                                    <p class="text-xs text-gray-200">Mulai Rp 10.000 / Gelas</p>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Highlights -->
+                            <div class="flex items-center justify-between text-xs font-semibold text-gray-600 bg-orange-50 p-3 rounded-xl">
+                                <span class="flex items-center gap-1 text-orenji-dark">
+                                    <i data-lucide="map-pin" class="w-4 h-4"></i> Panam, Pekanbaru
+                                </span>
+                                <span class="flex items-center gap-1 text-green-600 font-bold">
+                                    <i data-lucide="check-circle2" class="w-4 h-4"></i> Siap Diantar
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SEARCH & EXPLORE SECTION -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-orenji-primary font-bold text-sm tracking-widest uppercase mb-2 block">EXPLORE OUR MENU</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-4">Pilihan Minuman Kesegaran ORENJI</h2>
+                <p class="text-gray-600">Lagi ingin minum jus jeruk dingin rasa apa hari ini? Cari dan saring pilihan favoritmu di bawah ini.</p>
+            </div>
+
+            <!-- Search Bar & Category Filter Controls -->
+            <div class="max-w-3xl mx-auto mb-10 bg-orange-50/80 p-4 rounded-2xl border border-orange-100 shadow-sm">
+                <div class="flex flex-col md:flex-row gap-3">
+                    <!-- Search Input -->
+                    <div class="relative flex-1">
+                        <i data-lucide="search" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="menu-search-input"
+                               placeholder="Cari minuman favoritmu (contoh: Yakult, Madu, Milk)..."
+                               class="w-full pl-11 pr-4 py-3 bg-white rounded-xl border border-orange-200 focus:outline-none focus:ring-2 focus:ring-orenji-primary focus:border-transparent text-sm">
+                    </div>
+
+                    <!-- Sorting Filter -->
+                    <div class="flex items-center gap-2">
+                        <select id="menu-sort-select" class="w-full md:w-auto py-3 px-4 bg-white rounded-xl border border-orange-200 text-sm font-semibold text-gray-700 focus:outline-none focus:ring-2 focus:ring-orenji-primary">
+                            <option value="default">Urutkan: Default</option>
+                            <option value="price-low">Harga: Terendah</option>
+                            <option value="price-high">Harga: Tertinggi</option>
+                            <option value="name">Nama (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Category Chips -->
+                <div class="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-orange-200/60" id="category-chips-container">
+                    <!-- Dynamically populated via JavaScript -->
+                </div>
+            </div>
+
+            <!-- PRODUCT CATALOG GRID -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Product Cards Rendered Dynamically -->
+            </div>
+
+            <!-- Empty State Message -->
+            <div id="no-products-msg" class="hidden text-center py-12 bg-orange-50/50 rounded-3xl border border-dashed border-orange-200 mt-6">
+                <i data-lucide="frown" class="w-12 h-12 text-orange-300 mx-auto mb-3"></i>
+                <h3 class="text-lg font-bold text-gray-700">Minuman tidak ditemukan</h3>
+                <p class="text-sm text-gray-500 mt-1">Coba kata kunci pencarian atau kategori lain.</p>
+            </div>
+
+            <!-- Topping / Add-On Announcement Banner -->
+            <div class="mt-12 bg-gradient-to-r from-amber-500 to-orenji-primary text-white p-6 sm:p-8 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0">
+                        <i data-lucide="sparkle" class="w-8 h-8 text-yellow-200"></i>
+                    </div>
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-white/20 rounded-full text-xs font-bold uppercase tracking-wider mb-1">Topping & Extra</span>
+                        <h3 class="text-xl sm:text-2xl font-display font-bold">Nikmati Tambahan Sensasi Segar!</h3>
+                        <p class="text-amber-100 text-sm mt-1">Tambah Yakult (+Rp 3.000) atau nikmati Topping Nata De Coco yang kenyal!</p>
+                    </div>
+                </div>
+                <button onclick="openOrderModal('Spesial Request Topping')" class="bg-white text-orenji-dark font-extrabold px-6 py-3 rounded-xl shadow-md hover:bg-amber-50 transition-all text-sm shrink-0">
+                    Pesan Custom Order
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE ORDER FORM SECTION -->
+    <section id="order-form-section" class="py-16 bg-gradient-to-b from-orange-100/40 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-orange-100 overflow-hidden">
+                <div class="orange-gradient p-6 sm:p-8 text-white text-center">
+                    <h2 class="text-2xl sm:text-3xl font-display font-bold mb-2">Form Pemesanan Cepat WhatsApp</h2>
+                    <p class="text-amber-100 text-sm">Pilih menu, lengkapi detail, dan sistem akan membuat format pemesanan otomatis ke WhatsApp ORENJI SQUEEZE.</p>
+                </div>
+
+                <form id="whatsapp-order-form" class="p-6 sm:p-8 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Nama Pelanggan -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Nama Pemesan *</label>
+                            <input type="text" id="cust-name" required placeholder="Masukkan nama Anda..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orenji-primary text-sm">
+                        </div>
+
+                        <!-- No HP / WhatsApp -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Nomor WhatsApp *</label>
+                            <input type="tel" id="cust-phone" required placeholder="0812xxxxxxx" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orenji-primary text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Menu Choice -->
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Pilih Minuman *</label>
+                            <select id="cust-product" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orenji-primary text-sm font-medium">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Jumlah (Gelas) *</label>
+                            <div class="flex items-center border border-gray-200 rounded-xl overflow-hidden bg-gray-50">
+                                <button type="button" onclick="adjustQty(-1)" class="px-4 py-3 text-gray-600 hover:bg-orange-100 font-bold">-</button>
+                                <input type="number" id="cust-qty" value="1" min="1" max="99" readonly class="w-full text-center bg-transparent font-bold text-gray-800 text-sm">
+                                <button type="button" onclick="adjustQty(1)" class="px-4 py-3 text-gray-600 hover:bg-orange-100 font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Options -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Opsi Pengambilan / Antar</label>
+                            <select id="cust-delivery" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orenji-primary text-sm">
+                                <option value="Pick-up di Gerai Bangau Sakti">Pick-up di Gerai Bangau Sakti (Panam)</option>
+                                <option value="Pick-up di Gerai Suka Karya">Pick-up di Gerai Suka Karya (Panam)</option>
+                                <option value="Pengiriman via Kurir / GoFood">Pengiriman via GoFood / Kurir Online</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Estimasi Total Biaya</label>
+                            <div class="w-full px-4 py-3 rounded-xl bg-orange-50 border border-orange-200 text-orenji-dark font-extrabold text-lg flex items-center justify-between">
+                                <span>Total:</span>
+                                <span id="form-total-price">Rp 10.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Catatan Pesanan (opsional)</label>
+                        <textarea id="cust-notes" rows="2" placeholder="Contoh: Es sedikit, atau tambah Yakult..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orenji-primary text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full orange-gradient text-white font-extrabold py-4 rounded-xl shadow-lg hover:shadow-orange-400 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 text-base">
+                        <i data-lucide="message-square" class="w-5 h-5"></i>
+                        <span>KIRIM PESANAN KE WHATSAPP (085273955806)</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <div class="relative">
+                    <div class="aspect-video sm:aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-orange-100 bg-orange-100">
+                        <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=800&q=80"
+                             alt="Penyajian Jus Orenji Squeeze"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-5 rounded-2xl shadow-xl border border-orange-100 hidden sm:block max-w-xs">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i data-lucide="heart" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-800">Cita Rasa Murni</p>
+                                <p class="text-xs text-gray-500">Dibuat langsung dari bulir jeruk murni berkualitas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-orenji-primary font-bold text-sm tracking-widest uppercase block mb-2">ABOUT ORENJI SQUEEZE</span>
+                    <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mb-6">Cerita Kesegaran di Setiap Perasan</h2>
+
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        <strong class="text-orenji-dark">ORENJI SQUEEZE</strong> hadir memberikan dahaga kesegaran alami yang sesungguhnya. Dibuat dari jeruk segar pilihan tanpa tambahan pewarna buatan maupun bahan pengawet, setiap tegukannya menghadirkan kebaikan Vitamin C alami.
+                    </p>
+
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Dengan semangat <span class="text-orenji-primary font-semibold">"Fresher · Happier · Healthier"</span>, kami siap menceriakan harimu baik saat kuliah, bekerja, atau bersantai bersama teman di Panam, Pekanbaru!
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-orenji-primary shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900">Lokasi Panam 1</h4>
+                                <p class="text-xs text-gray-500">Jl. Bangau Sakti, Panam</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-orenji-primary shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900">Lokasi Panam 2</h4>
+                                <p class="text-xs text-gray-500">Jl. Suka Karya, Panam</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-16 bg-orange-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-orenji-primary font-bold text-sm tracking-widest uppercase block mb-2">ORENJI GALLERY</span>
+                <h2 class="text-3xl font-display font-bold text-gray-900">Momen Kesegaran ORENJI</h2>
+                <p class="text-gray-600 text-sm mt-2">Intip suasana gerai, penyajian produk, dan ekspresi penikmat ORENJI SQUEEZE.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" alt="Jus Jeruk Segar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white p-2 text-center text-xs font-bold">
+                        Jus Jeruk Segar Dingin
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=80" alt="Kemasan Orenji Squeeze" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white p-2 text-center text-xs font-bold">
+                        Kemasan Hijau & Segar
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=600&q=80" alt="Buah Jeruk Pilihan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white p-2 text-center text-xs font-bold">
+                        100% Buah Jeruk Pilihan
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="group relative aspect-square rounded-2xl overflow-hidden bg-gray-200 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80" alt="Es Jus Jeruk" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white p-2 text-center text-xs font-bold">
+                        Penyajian Dengan Es Kristal
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-orenji-primary font-bold text-sm tracking-widest uppercase block mb-2">WHAT CUSTOMERS SAY</span>
+                <h2 class="text-3xl font-display font-bold text-gray-900">Kata Pelanggan Orenji</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="bg-orange-50/60 p-6 rounded-2xl border border-orange-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic mb-4">"Manisnya pas banget, kerasa jeruk aslinya bukan perasa buatan! Varian Jus Jeruk Yakult favorit saya pas cuaca panas di Panam."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-orange-200/50">
+                        <div class="w-8 h-8 rounded-full bg-orenji-primary text-white font-bold flex items-center justify-center text-xs">R</div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-900">Rina S.</p>
+                            <p class="text-[10px] text-gray-500">Pelanggan Bangau Sakti</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-orange-50/60 p-6 rounded-2xl border border-orange-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic mb-4">"Harganya affordable banget mulai 10rb dapet jus jeruk murni segaris ini. Recommended banget buat temen ngampus."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-orange-200/50">
+                        <div class="w-8 h-8 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center text-xs">A</div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-900">Andi Pratama</p>
+                            <p class="text-[10px] text-gray-500">Mahasiswa Panam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-orange-50/60 p-6 rounded-2xl border border-orange-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic mb-4">"Pesan via WhatsApp responnya cepat, langsung diantar via kurir online. Jeruk Madu-nya bikin stamina balik lagi!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-orange-200/50">
+                        <div class="w-8 h-8 rounded-full bg-green-500 text-white font-bold flex items-center justify-center text-xs">D</div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-900">Dina W.</p>
+                            <p class="text-[10px] text-gray-500">Pelanggan Suka Karya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO ORDER SECTION -->
+    <section id="how-to-order" class="py-16 bg-gradient-to-br from-orange-500 to-amber-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-2 inline-block">EASY STEPS</span>
+                <h2 class="text-3xl font-display font-bold">Cara Mudah Memesan ORENJI SQUEEZE</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center">
+                    <div class="w-12 h-12 rounded-full bg-white text-orenji-primary font-extrabold text-xl flex items-center justify-center mx-auto mb-4">01</div>
+                    <h3 class="font-bold text-lg mb-2">Lihat Menu</h3>
+                    <p class="text-xs text-amber-100">Pilih varian kesegaran jus jeruk favoritmu pada daftar menu online ini.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center">
+                    <div class="w-12 h-12 rounded-full bg-white text-orenji-primary font-extrabold text-xl flex items-center justify-center mx-auto mb-4">02</div>
+                    <h3 class="font-bold text-lg mb-2">Isi Form / Chat WA</h3>
+                    <p class="text-xs text-amber-100">Gunakan form pemesanan atau klik tombol WhatsApp untuk memesan otomatis.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center">
+                    <div class="w-12 h-12 rounded-full bg-white text-orenji-primary font-extrabold text-xl flex items-center justify-center mx-auto mb-4">03</div>
+                    <h3 class="font-bold text-lg mb-2">Konfirmasi Order</h3>
+                    <p class="text-xs text-amber-100">Tim Orenji akan mengonfirmasi total biaya, metode pembayaran, dan ketersediaan.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center">
+                    <div class="w-12 h-12 rounded-full bg-white text-orenji-primary font-extrabold text-xl flex items-center justify-center mx-auto mb-4">04</div>
+                    <h3 class="font-bold text-lg mb-2">Ambil / Nikmati</h3>
+                    <p class="text-xs text-amber-100">Pick-up langsung di outlet Panam atau dikirimkan langsung ke rumahmu!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-orenji-primary font-bold text-sm tracking-widest uppercase block mb-2">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 class="text-3xl font-display font-bold text-gray-900">Pertanyaan Sering Diajukan</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 bg-orange-50/50 hover:bg-orange-100/50 flex justify-between items-center transition-colors">
+                        <span>Apakah Jus ORENJI SQUEEZE menggunakan jeruk asli?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-orenji-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-white text-sm text-gray-600 border-t border-orange-100">
+                        Ya, ORENJI SQUEEZE diproses dari 100% buah jeruk asli tanpa bahan pengawet sintesis maupun pewarna buatan.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 bg-orange-50/50 hover:bg-orange-100/50 flex justify-between items-center transition-colors">
+                        <span>Dimana alamat outlet ORENJI SQUEEZE?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-orenji-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-white text-sm text-gray-600 border-t border-orange-100">
+                        Kami berlokasi di Pekanbaru (Panam) pada dua titik: <br>
+                        1. Jl. Bangau Sakti, Panam <br>
+                        2. Jl. Suka Karya, Panam
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 bg-orange-50/50 hover:bg-orange-100/50 flex justify-between items-center transition-colors">
+                        <span>Berapa kisaran harga menu minuman?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-orenji-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-white text-sm text-gray-600 border-t border-orange-100">
+                        Harga sangat terjangkau, mulai dari Rp 10.000 untuk varian Jus Jeruk Original hingga Rp 13.000 untuk varian Madu dan Chia Seed.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 bg-orange-50/50 hover:bg-orange-100/50 flex justify-between items-center transition-colors">
+                        <span>Apakah bisa dipesan online melalui GoFood / WhatsApp?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-orenji-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-white text-sm text-gray-600 border-t border-orange-100">
+                        Bisa! Anda dapat memesan langsung via WhatsApp resmi di 085273955806 atau melalui platform GoFood.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-16 bg-orange-50/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-orange-100">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <span class="text-orenji-primary font-bold text-sm tracking-widest uppercase block mb-2">LET'S CONNECT</span>
+                        <h2 class="text-3xl font-display font-bold text-gray-900 mb-4">Hubungi ORENJI SQUEEZE</h2>
+                        <p class="text-gray-600 text-sm mb-6">Punya pertanyaan seputar ketersediaan menu, pemesanan jumlah besar, atau lokasi gerai? Kami siap melayani!</p>
+
+                        <div class="space-y-4 mb-8">
+                            <a href="https://wa.me/6285273955806" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-green-50 text-green-800 border border-green-200 hover:bg-green-100 transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center shrink-0">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-green-700 font-medium">WhatsApp Resmi</p>
+                                    <p class="font-extrabold text-base">085273955806</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.instagram.com/orenjisqueeze/" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-pink-50 text-pink-800 border border-pink-200 hover:bg-pink-100 transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-pink-600 text-white flex items-center justify-center shrink-0">
+                                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-pink-700 font-medium">Instagram Resmi</p>
+                                    <p class="font-extrabold text-base">@orenjisqueeze</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.tiktok.com/@orenjisqueeze" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 text-gray-800 border border-gray-200 hover:bg-gray-100 transition-colors">
+                                <div class="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                                    <i data-lucide="video" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-medium">TikTok Resmi</p>
+                                    <p class="font-extrabold text-base">@orenjisqueeze</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Locations Box -->
+                    <div class="bg-orange-50 p-6 sm:p-8 rounded-2xl border border-orange-200">
+                        <h3 class="font-display font-bold text-xl text-gray-900 mb-4 flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-orenji-primary"></i>
+                            <span>Gerai Outlet Kami</span>
+                        </h3>
+                        <div class="space-y-4 text-sm text-gray-700">
+                            <div class="p-3 bg-white rounded-xl border border-orange-100">
+                                <p class="font-bold text-orenji-dark">1. Outlet Bangau Sakti</p>
+                                <p class="text-xs text-gray-500">Jl. Bangau Sakti, Panam, Pekanbaru</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-xl border border-orange-100">
+                                <p class="font-bold text-orenji-dark">2. Outlet Suka Karya</p>
+                                <p class="text-xs text-gray-500">Jl. Suka Karya, Panam, Pekanbaru</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-orange-200 text-center">
+                            <p class="text-xs text-gray-500 mb-3">Siap Mengantarkan Kesegaran ke Rumahmu!</p>
+                            <a href="https://wa.me/6285273955806?text=Halo%20Orenji%20Squeeze,%20saya%20ingin%20tanya%20lokasi%20dan%20menu"
+                               target="_blank"
+                               class="inline-flex items-center justify-center gap-2 w-full py-3 orange-gradient text-white font-bold rounded-xl shadow-md text-sm">
+                                <i data-lucide="navigation" class="w-4 h-4"></i>
+                                <span>Petunjuk Arah / Chat Lokasi</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-gray-800">
+                <!-- Col 1 -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full orange-gradient flex items-center justify-center text-white">
+                            <i data-lucide="citrus" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-white">ORENJI SQUEEZE</span>
+                    </div>
+                    <p class="text-xs text-gray-400 max-w-sm mb-4 leading-relaxed">
+                        Fresher · Happier · Healthier. Jus jeruk murni berkualitas tinggi di Panam, Pekanbaru. Tanpa pengawet & tanpa pewarna buatan.
+                    </p>
+                    <p class="text-xs font-bold text-amber-400">"Life is Better with Orange ♡"</p>
+                </div>
+
+                <!-- Col 2 Links -->
+                <div>
+                    <h4 class="font-bold text-sm text-orange-400 uppercase tracking-wider mb-3">Navigasi</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#menu" class="hover:text-white transition-colors">Katalog Menu</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="#gallery" class="hover:text-white transition-colors">Galeri Momen</a></li>
+                        <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 Socials -->
+                <div>
+                    <h4 class="font-bold text-sm text-orange-400 uppercase tracking-wider mb-3">Ikuti Kami</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="https://www.instagram.com/orenjisqueeze/" target="_blank" class="hover:text-white flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4"></i> @orenjisqueeze</a></li>
+                        <li><a href="https://www.tiktok.com/@orenjisqueeze" target="_blank" class="hover:text-white flex items-center gap-2"><i data-lucide="video" class="w-4 h-4"></i> TikTok Orenji</a></li>
+                        <li><a href="https://wa.me/6285273955806" target="_blank" class="hover:text-white flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> 085273955806</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 text-center text-xs text-gray-500">
+                <p>&copy; 2026 ORENJI SQUEEZE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: PRODUCT DETAIL MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden transform transition-all relative animate-in fade-in zoom-in-95 duration-200">
+            <!-- Close button -->
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Image preview -->
+            <div class="aspect-video bg-orange-100 relative">
+                <img id="modal-img" src="" alt="Product Detail" class="w-full h-full object-cover">
+                <span id="modal-badge" class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-orenji-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                    100% Jeruk Asli
+                </span>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6">
+                <h3 id="modal-title" class="text-2xl font-display font-bold text-gray-900 mb-1">Nama Produk</h3>
+                <p id="modal-price" class="text-xl font-extrabold text-orenji-primary mb-3">Rp 10.000</p>
+                <p id="modal-desc" class="text-sm text-gray-600 mb-6 leading-relaxed">Deskripsi produk minuman kesegaran alami.</p>
+
+                <div class="flex items-center justify-between gap-4 pt-4 border-t border-gray-100">
+                    <button id="modal-order-btn" onclick="" class="w-full orange-gradient text-white font-bold py-3 px-6 rounded-xl shadow-md hover:scale-[1.02] active:scale-95 transition-all text-center flex items-center justify-center gap-2 text-sm">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                        <span>Pesan Varian Ini</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: MOCK CMS / DATA MANAGEMENT MODAL -->
+    <div id="cms-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="orange-gradient p-4 sm:p-6 text-white flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="settings" class="w-6 h-6"></i>
+                    <h3 class="font-display font-bold text-xl">Panel Pengaturan Konten Business (CMS)</h3>
+                </div>
+                <button onclick="closeCmsModal()" class="text-white/80 hover:text-white">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-6 text-sm text-gray-700">
+                <div class="bg-amber-50 p-3 rounded-xl text-xs text-amber-800 border border-amber-200">
+                    <strong>Petunjuk Pemilik Bisnis:</strong> Anda dapat mengedit harga, nama produk, atau kontak di bawah ini secara instan untuk memperbarui tampilan website.
+                </div>
+
+                <!-- Business Info Quick Edit -->
+                <div>
+                    <h4 class="font-bold text-gray-900 text-sm mb-3 border-b pb-1">Kontak & Bisnis</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Nomor WA Bisnis</label>
+                            <input type="text" id="cms-wa" value="085273955806" class="w-full p-2 border rounded-lg text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Instagram Handle</label>
+                            <input type="text" id="cms-ig" value="@orenjisqueeze" class="w-full p-2 border rounded-lg text-xs">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Table Management -->
+                <div>
+                    <h4 class="font-bold text-gray-900 text-sm mb-3 border-b pb-1">Daftar Menu & Harga Resmi</h4>
+                    <div class="space-y-3" id="cms-product-list">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 border-t flex justify-end gap-3">
+                <button onclick="closeCmsModal()" class="px-4 py-2 border rounded-xl text-gray-600 hover:bg-gray-100 font-bold text-xs">Tutup</button>
+                <button onclick="saveCmsChanges()" class="px-5 py-2 orange-gradient text-white rounded-xl font-bold text-xs shadow-md">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
